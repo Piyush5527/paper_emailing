@@ -7,6 +7,7 @@
     require 'phpmailer/src/SMTP.php';
     if(isset($_POST['mailsend']))
     {
+        // echo " dslhfsdkfjs";
         require_once "Classes/PHPExcel.php";
         $path=$_POST['excelSheet'];
         if($_POST['excelSheet']=='select')
@@ -16,6 +17,7 @@
         }
         else
         {
+            // echo "fdshflsf";
             $reader=PHPExcel_IOFactory::createReaderForFile($path);
             $excel_obj= $reader -> load($path);
             $worksheet=$excel_obj -> getActiveSheet();
@@ -49,86 +51,86 @@
 
 
 
-                $headers = array(
-                    'From' => $from,
-                    'To' => $emailId,
-                    'Subject' => $subject
-                );
+                // $headers = array(
+                //     'From' => $from,
+                //     'To' => $emailId,
+                //     'Subject' => $subject
+                // );
 
-                $smtp = Mail::factory('smtp', array(
-                    'host' => 'smtp.emailidea.biz',
-                    'port' => '587',
-                    'auth' => true,
-                    'username' => 'tempmail4812@gmail.com', //your gmail account
-                    'password' => 'f53b79f0dc7d487da43e9a903e91821f' // your password 
-                ));
+                // $smtp = Mail::factory('smtp', array(
+                //     'host' => 'smtp.emailidea.biz',
+                //     'port' => '587',
+                //     'auth' => true,
+                //     'username' => 'tempmail4812@gmail.com', //your gmail account
+                //     'password' => 'f53b79f0dc7d487da43e9a903e91821f' // your password 
+                // ));
 
-                $mail = $smtp->send($to, $headers, $body);
-                echo $mail;
+                // $mail = $smtp->send($to, $headers, $body);
+                // echo $mail;
                 // echo $emailId." ".$studName." ".$studEnrol."<br/>";
 
-                // $mail=new PHPMailer(true);
-                // $mail->isSMTP(true);
-                // $mail->Host = 'smtp.emailidea.biz';
-                // $mail->SMTPAuth = true;
-                // $mail->Username = 'admin_mca@ljku.edu.in';
-                // $mail->Password = '984559775f4a442eafce2e4b65491597';
-                // // $mail->SMTPSecure='ssl';
-                // $mail->SMTPSecure = 'tls';
-                // $mail->Port = 587;
+                $mail=new PHPMailer(true);
+                $mail->isSMTP(true);
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'tempmail4812@gmail.com';
+                $mail->Password = 'f53b79f0dc7d487da43e9a903e91821f';
+                // $mail->SMTPSecure='ssl';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
 
-                // $mail->SMTPOptions = array(
-                //     'ssl' => array(
-                //     'verify_peer' => false,
-                //     'verify_peer_name' => false,
-                //     'allow_self_signed' => true
-                //     )
-                // ); 
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                    )
+                ); 
 
-                // $mail->setFrom('admin_mca@ljku.edu.in');
-                // $mail->addAddress($emailId);
-                // $mail->isHtml(true);
-                // $mail->Subject=$mailSubject;
-                // $mail->Body=$mailMessage;
-                // // echo $directoryMarksheets.$studEnrol;
-                // if(file_exists($directoryMarksheets.$studEnrol.".rar") || file_exists($directoryMarksheets.$studEnrol.".zip") || file_exists($directoryMarksheets.$studEnrol.".pdf"))
-                // {
-                //     if(file_exists($directoryMarksheets.$studEnrol.".rar"))
-                //     {
-                //         $mail->addAttachment($directoryMarksheets.$studEnrol.".rar");
-                //         if (!$mail->send()) {
-                //             echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
-                //         }
-                //         else{
-                //             echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
-                //         }
-                //     }
-                //     elseif (file_exists($directoryMarksheets.$studEnrol.".pdf")) {
-                //         $mail->addAttachment($directoryMarksheets.$studEnrol.".pdf");
-                //         if (!$mail->send()) {
-                //             echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
-                //         }
-                //         else{
-                //             echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
-                //         }
-                //     }
-                //     else
-                //     {
-                //         $mail->addAttachment($directoryMarksheets.$studEnrol."zip");
-                //         if (!$mail->send()) {
-                //             echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
-                //         }
-                //         else{
-                //             echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
-                //         }
-                //     }
+                $mail->setFrom('admin_mca@ljku.edu.in');
+                $mail->addAddress($emailId);
+                $mail->isHtml(true);
+                $mail->Subject=$mailSubject;
+                $mail->Body=$mailMessage;
+                // echo $directoryMarksheets.$studEnrol;
+                if(file_exists($directoryMarksheets.$studEnrol.".rar") || file_exists($directoryMarksheets.$studEnrol.".zip") || file_exists($directoryMarksheets.$studEnrol.".pdf"))
+                {
+                    if(file_exists($directoryMarksheets.$studEnrol.".rar"))
+                    {
+                        $mail->addAttachment($directoryMarksheets.$studEnrol.".rar");
+                        if (!$mail->send()) {
+                            echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
+                        }
+                        else{
+                            echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
+                        }
+                    }
+                    elseif (file_exists($directoryMarksheets.$studEnrol.".pdf")) {
+                        $mail->addAttachment($directoryMarksheets.$studEnrol.".pdf");
+                        if (!$mail->send()) {
+                            echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
+                        }
+                        else{
+                            echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
+                        }
+                    }
+                    else
+                    {
+                        $mail->addAttachment($directoryMarksheets.$studEnrol."zip");
+                        if (!$mail->send()) {
+                            echo "<p style='color:yellow'>".$studEnrol." mail can't be sended please try again</p>", $mail->ErrorInfo;
+                        }
+                        else{
+                            echo "<p style='color:green'>".$studEnrol." mail has been sent </p>";
+                        }
+                    }
                     
                     
-                // }
-                // else
-                // {
-                //     echo "<p style='color:red;'>".$studEnrol." mail cant be sent because it's answersheet was not found </p>";
-                // }
+                }
+                else
+                {
+                    echo "<p style='color:red;'>".$studEnrol." mail cant be sent because it's answersheet was not found </p>";
+                }
             }
         }
     }

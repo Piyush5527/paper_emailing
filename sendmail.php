@@ -42,7 +42,7 @@
     </nav>
     <div class="main-container">
         <table>
-            <form method="post" action="ConfirmMailSendNew.php">
+            <form method="post" action="ConfirmMailSend.php">
                 <tr>
                     <td>Select Excel Sheet</td>
                     <td><select name="excelSheet" className="excelSheet">

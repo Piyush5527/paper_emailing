@@ -42,16 +42,16 @@
                 $emailId=$worksheet->getCell($studEmailColumn.$i)->getValue();
                 $studName=$worksheet->getCell($studNameColumn.$i)->getValue();
                 $studEnrol=$worksheet->getCell($studEnrollColumn.$i)->getValue();
-                // echo $emailId." ".$studName." ".$studEnrol."<br/>";
+                echo $emailId." ".$studName." ".$studEnrol."<br/>";
 
                 $mail=new PHPMailer(true);
                 $mail->isSMTP(true);
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'admin_mca@ljku.edu.in';
-                $mail->Password = 'admin@123';
-                // $mail->Username = 'tempmail4812@gmail.com';
-                // $mail->Password = 'f53b79f0dc7d487da43e9a903e91821f';
+                // $mail->Username = 'admin_mca@ljku.edu.in';
+                // $mail->Password = 'admin@123';
+                $mail->Username = 'tempmail4812@gmail.com';
+                $mail->Password = 'esda oygl iriw dflr';
 
                 // $mail->SMTPSecure='ssl';
                 $mail->SMTPSecure = 'tls';
@@ -65,7 +65,7 @@
                     )
                 ); 
 
-                $mail->setFrom('admin_mca@ljku.edu.in');
+                $mail->setFrom('tempmail4812@gmail.com');
                 $mail->addAddress($emailId);
                 $mail->isHtml(true);
                 $mail->Subject=$mailSubject;
